@@ -148,11 +148,32 @@ POST courses/:id/assignments/
 ---
 ### 设置小组
 添加一个小组。
+
+权限：任课教师，上课且没有小组的学生。
 ```
 POST courses/:id/groups/
 ```
-#### 权限
-任课教师。上课且没有小组的学生。
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| name | string | **Required**. 小组名称
+| leader | url | **Required**. 组长
+| members | list of urls | 组员
+
+备注：组员组长必须为上此课且没有小组的学生。
+
+e.g.
+```json
+{
+  "members": [
+    "/api/students/2/",
+    "/api/students/3/"
+  ],
+  "name": "success",
+  "leader": "/api/students/1/"
+}
+```
 
 ---
 ### 获得没有小组的学生列表
