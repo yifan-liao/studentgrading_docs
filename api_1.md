@@ -28,19 +28,26 @@ GET courses/giving/
   {
     "url": "http://testserver/api/courses/1/",
     "id": 1,
-    "title": "Poker Theory and Analytics",
-    "year": 2015,
+    "title": "Urbanizing China: A Reflective Dialogue",
+    "year": 2009,
     "semester": "SPG",
     "description": "",
     "min_group_size": 0,
-    "max_group_size": 0,
-    "instructors": "http://testserver/api/courses/1/instructors/"
+    "max_group_size": 5,
+    "instructors": [
+      "http://testserver/api/courses/1/instructors/1/",
+      "http://testserver/api/courses/1/instructors/2/"
+    ],
+    "groups": [
+      "http://testserver/api/groups/1/",
+      "http://testserver/api/groups/2/"
+    ]
   },
   {
     "url": "http://testserver/api/courses/2/",
     "id": 2,
-    "title": "The Anthropology of Cybercultures",
-    "year": 2003,
+    "title": "Poker Theory and Analytics",
+    "year": 2013,
     "semester": "AUT",
     "description": ""
   }
@@ -55,28 +62,35 @@ GET courses/:id/
 
 响应：
 
-学生查看所选课程，或者教师查看所任课程：
+上课学生查看，或者任课教师查看：
 ```json
 {
   "url": "http://testserver/api/courses/1/",
   "id": 1,
-  "title": "Digital Signal Processing",
-  "year": 2008,
+  "title": "Urbanizing China: A Reflective Dialogue",
+  "year": 2009,
   "semester": "SPG",
   "description": "",
   "min_group_size": 0,
-  "max_group_size": 0,
-  "instructors": "http://testserver/api/courses/1/instructors/"
+  "max_group_size": 5,
+  "instructors": [
+    "http://testserver/api/courses/1/instructors/1/",
+    "http://testserver/api/courses/1/instructors/2/"
+  ],
+  "groups": [
+    "http://testserver/api/groups/1/",
+    "http://testserver/api/groups/2/"
+  ]
 }
 ```
 
-学生查看未选课程，或者教师查看其他课程：
+未选课学生查看，或者非任课教师查看：
 ```json
 {
   "url": "http://testserver/api/courses/2/",
   "id": 2,
-  "title": "High-Dimensional Statistics",
-  "year": 2010,
+  "title": "Poker Theory and Analytics",
+  "year": 2013,
   "semester": "AUT",
   "description": ""
 }
