@@ -22,7 +22,7 @@ GET courses/taking/
 GET courses/giving/
 ```
 
-#### 响应
+响应：
 ```json
 [
   {
@@ -53,7 +53,7 @@ GET courses/giving/
 GET courses/:id/
 ```
 
-#### 响应
+响应：
 
 学生查看所选课程，或者教师查看所任课程：
 ```json
@@ -84,21 +84,58 @@ GET courses/:id/
 
 ---
 ### 新增课程
+权限：教师
 ```
 POST courses/
 ```
 
-#### 
+输入:
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| title | string | **Required**. 课程名。
+| year | string | **Required**. 课程年份。
+| semester | string | **Required**. 取值为`"SPG"`或者`"AUT"`二选一。
+| description | string | 课程描述。默认为`''`。
+| min_group_size | integer | 课程小组人数最小值。默认为`0`。
+| max_group_size | integer | 课程小组人数最大值。默认为`5`。
+| instructors | list of urls | 课程教师。默认为`[]`。
+
+e.g.
+```json
+{
+  "description": "Given by dxiao.",
+  "instructors": [
+    "http://testserver/api/instructors/1/"
+  ],
+  "semester": "AUT",
+  "yaer": "2015",
+  "title": "Software Engineering"
+}
+```
 
 ---
 ### 设置学生
 添加一个学生。
+
+权限: 任课教师
 ```
 POST courses/:id/students/
 ```
+输入：
 
-#### 权限
-任课教师
+| Name | Type | Description
+|:---- |:---- |:-------
+| student | url | **Required**. 
+
+e.g.
+```json
+{
+  "student": "http://testserver/api/courses/1/"
+}
+```
+
+
 
 ---
 ### 设置作业
