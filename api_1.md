@@ -53,7 +53,34 @@ GET courses/giving/
 GET courses/:id/
 ```
 
+#### 响应
 
+学生查看所选课程，或者教师查看所任课程：
+```json
+{
+  "url": "http://testserver/api/courses/1/",
+  "id": 1,
+  "title": "Digital Signal Processing",
+  "year": 2008,
+  "semester": "SPG",
+  "description": "",
+  "min_group_size": 0,
+  "max_group_size": 0,
+  "instructors": "http://testserver/api/courses/1/instructors/"
+}
+```
+
+学生查看未选课程，或者教师查看其他课程：
+```json
+{
+  "url": "http://testserver/api/courses/2/",
+  "id": 2,
+  "title": "High-Dimensional Statistics",
+  "year": 2010,
+  "semester": "AUT",
+  "description": ""
+}
+```
 
 ---
 ### 新增课程
@@ -61,8 +88,7 @@ GET courses/:id/
 POST courses/
 ```
 
-#### 权限
-教师
+#### 
 
 ---
 ### 设置学生
