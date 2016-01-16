@@ -10,6 +10,31 @@ GET courses/
 所有人。
 但是得到的课程信息因人而异。任课教师，上课学生能查看更多的信息。
 
+#### 响应
+```json
+[
+  {
+    "url": "http://testserver/api/courses/1/",
+    "id": 1,
+    "title": "Poker Theory and Analytics",
+    "year": 2015,
+    "semester": "SPG",
+    "description": "",
+    "min_group_size": 0,
+    "max_group_size": 0,
+    "instructors": "http://testserver/api/courses/1/instructors/"
+  },
+  {
+    "url": "http://testserver/api/courses/2/",
+    "id": 2,
+    "title": "The Anthropology of Cybercultures",
+    "year": 2003,
+    "semester": "AUT",
+    "description": ""
+  }
+]
+```
+
 ---
 ### 学生获得已选课程列表
 ```
