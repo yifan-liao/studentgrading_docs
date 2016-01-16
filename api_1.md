@@ -190,11 +190,10 @@ GET groups/:id/
 PATCH groups/:id/
 ```
 
-修改小组编号。
-
+### 删除小组
 权限：任课教师。
 ```
-PATCH groups/:id/
+DELETE groups/:id/
 ```
 
 ### 添加成员
