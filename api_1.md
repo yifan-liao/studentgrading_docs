@@ -177,24 +177,49 @@ PATCH courses/:id/
 GET groups/
 ```
 
+### 获得某一小组的信息
+```
+GET groups/:id/
+```
+
+### 修改小组信息
+修改小组名称。
+
+权限：任课教师，组长。
+```
+PATCH groups/:id/
+```
+
+修改小组编号。
+
+权限：任课教师。
+```
+PATCH groups/:id/
+```
+
 ### 添加成员
-添加一个没有组的上课学生。
+为一个小组添加成员。
+
+权限：任课教师，组长。
 ```
 POST groups/:id/members/
 ```
-#### 权限
-任课教师。组长。
+
+### 删除成员
+权限：任课教师，组长。
+```
+DELETE groups/:id/members/
+```
 
 ### 更换组长
 将一个组内成员提升为组长，组长降为组内成员。
-```
-PUT groups/:id/leader/
-```
-#### 权限
-任课教师。组长。
 
-### 获得作业列表
-获得本小组所在课程布置的所有作业：
+权限：任课教师，组长。
 ```
-GET groups/:id/assignments/
+PATCH groups/:id/leader/
+```
+
+### 获得小组提交的作业列表
+```
+GET groups/:id/submissions/
 ```
