@@ -1,3 +1,23 @@
+## 其他
+
+### 获得自己的url
+
+返回用户的url，学生或者教师。
+如果用户未绑定到学生或者教师，返回400错误。
+
+```
+GET myself/
+```
+
+响应：
+
+```json
+{
+  "url": "http://testserver/api/courses/1/",
+}
+```
+
+
 ## 课程(Course)
 
 ### 获得课程列表
@@ -115,6 +135,8 @@ POST courses/
 | min_group_size | integer | 课程小组人数最小值。默认为`0`。
 | max_group_size | integer | 课程小组人数最大值。默认为`5`。
 | instructors | list of urls | 课程教师。默认为`[]`。
+
+如果`instructors`为空，并且请求的用户为教师，且没有教授此课程，那么将用户加入到此课程中。
 
 e.g.
 ```json
