@@ -193,12 +193,79 @@ POST courses/:id/assignments/
 #### 权限
 任课教师
 
+___
+### 查看课程小组列表
+
+权限：课程教师，上课学生。
+
+```
+GET courses/:id/groups/
+```
+
+响应：
+
+```json
+[
+  {
+    "url": "http://testserver/api/courses/1/groups/1/",
+    "id": 1,
+    "number": "A",
+    "name": "et",
+    "course": "http://testserver/api/courses/1/",
+    "leader": "http://testserver/api/students/1/",
+    "members": [
+      "http://testserver/api/groups/4/",
+      "http://testserver/api/groups/6/"
+    ]
+  },
+  {
+    "url": "http://testserver/api/courses/1/groups/2/",
+    "id": 2,
+    "number": "B",
+    "name": "alias",
+    "course": "http://testserver/api/courses/1/",
+    "leader": "http://testserver/api/students/2/",
+    "members": [
+      "http://testserver/api/groups/5/",
+      "http://testserver/api/groups/7/"
+    ]
+  }
+]
+```
+
+---
+### 查看某一课程小组
+
+
+权限：课程教师，上课学生。
+
+```
+GET courses/:id/groups/:id/
+```
+
+响应：
+```json
+{
+  "url": "http://testserver/api/courses/1/groups/1/",
+  "id": 1,
+  "number": "A",
+  "name": "et",
+  "course": "http://testserver/api/courses/1/",
+  "leader": "http://testserver/api/students/1/",
+  "members": [
+    "http://testserver/api/groups/4/",
+    "http://testserver/api/groups/6/"
+  ]
+}
+```
+
+
 ---
 ### 添加小组
 
 权限：任课教师，上课且没有小组的学生。
 ```
-POST courses/:id/groups/
+POST courses/:id/add_group/
 ```
 输入：
 
