@@ -207,10 +207,10 @@ GET courses/:id/groups/
 ```json
 [
   {
-    "url": "http://testserver/api/courses/1/groups/1/",
+    "url": "http://testserver/api/groups/1/",
     "id": 1,
     "number": "A",
-    "name": "et",
+    "name": "maiores",
     "course": "http://testserver/api/courses/1/",
     "leader": "http://testserver/api/students/1/",
     "members": [
@@ -219,10 +219,10 @@ GET courses/:id/groups/
     ]
   },
   {
-    "url": "http://testserver/api/courses/1/groups/2/",
+    "url": "http://testserver/api/groups/2/",
     "id": 2,
     "number": "B",
-    "name": "alias",
+    "name": "iste",
     "course": "http://testserver/api/courses/1/",
     "leader": "http://testserver/api/students/2/",
     "members": [
@@ -246,10 +246,10 @@ GET courses/:id/groups/:id/
 响应：
 ```json
 {
-  "url": "http://testserver/api/courses/1/groups/1/",
+  "url": "http://testserver/api/groups/1/",
   "id": 1,
   "number": "A",
-  "name": "et",
+  "name": "maiores",
   "course": "http://testserver/api/courses/1/",
   "leader": "http://testserver/api/students/1/",
   "members": [
@@ -306,9 +306,56 @@ GET courses/:id/students/ungrouped/
 GET groups/
 ```
 
+响应：
+
+```json
+[
+  {
+    "url": "http://testserver/api/groups/1/",
+    "id": 1,
+    "number": "A",
+    "name": "itaque",
+    "course": "http://testserver/api/courses/1/",
+    "leader": "http://testserver/api/students/1/",
+    "members": [
+      "http://testserver/api/groups/4/",
+      "http://testserver/api/groups/6/"
+    ]
+  },
+  {
+    "url": "http://testserver/api/groups/2/",
+    "id": 2,
+    "number": "B",
+    "name": "sit",
+    "course": "http://testserver/api/courses/1/",
+    "leader": "http://testserver/api/students/2/",
+    "members": [
+      "http://testserver/api/groups/5/",
+      "http://testserver/api/groups/7/"
+    ]
+  }
+]
+```
+
 ### 获得某一小组的信息
 ```
 GET groups/:id/
+```
+
+响应：
+```json
+{
+  "url": "http://testserver/api/groups/1/",
+  "id": 1,
+  "number": "A",
+  "name": "itaque",
+  "course": "http://testserver/api/courses/1/",
+  "leader": "http://testserver/api/students/1/",
+  "members": [
+    "http://testserver/api/groups/4/",
+    "http://testserver/api/groups/6/"
+  ]
+}
 ```
 
 ### 修改小组信息
@@ -319,14 +366,49 @@ GET groups/:id/
 PATCH groups/:id/
 ```
 
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| name | string | 组名
+
+e.g.
+```json
+{
+  "name": "success",
+}
+```
+
+### 更换组长
+将一个组内成员提升为组长，组长降为组内成员。
+
+权限：任课教师，组长。
+```
+PATCH groups/:id/
+```
+
+输入：
+| Name | Type | Description
+|:---- |:---- |:-------
+| leader | url | 组长
+
+e.g.
+```json
+{
+  "leader": "http://testserver/api/students/1/",
+}
+```
+
 ### 删除小组
+
 权限：任课教师。
+
 ```
 DELETE groups/:id/
 ```
 
+
 ### 添加成员
-为一个小组添加成员。
 
 权限：任课教师，组长。
 ```
@@ -337,14 +419,6 @@ POST groups/:id/members/
 权限：任课教师，组长。
 ```
 DELETE groups/:id/members/
-```
-
-### 更换组长
-将一个组内成员提升为组长，组长降为组内成员。
-
-权限：任课教师，组长。
-```
-PATCH groups/:id/leader/
 ```
 
 ### 获得小组提交的作业列表
