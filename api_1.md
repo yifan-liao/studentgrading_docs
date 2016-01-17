@@ -166,8 +166,7 @@ DELETE courses/:id/
 ```
 
 ---
-### 设置学生
-添加一个学生。
+### 添加学生
 
 权限: 任课教师
 ```
@@ -187,7 +186,7 @@ e.g.
 ```
 
 ---
-### 设置作业
+### 添加作业
 ```
 POST courses/:id/assignments/
 ```
@@ -195,8 +194,7 @@ POST courses/:id/assignments/
 任课教师
 
 ---
-### 设置小组
-添加一个小组。
+### 添加小组
 
 权限：任课教师，上课且没有小组的学生。
 ```
@@ -232,12 +230,6 @@ GET courses/:id/students/ungrouped/
 #### 权限
 任课教师。上课学生。
 
----
-### 更改课程配置
-组员人数限制配置
-```
-PATCH courses/:id/
-```
 
 ## 学生(Student)
 
