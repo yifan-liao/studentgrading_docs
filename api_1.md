@@ -129,6 +129,34 @@ e.g.
 ```
 
 ---
+### 编辑课程
+
+权限：任课教师
+
+```
+PATCH /courses/:id/
+```
+
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| description | string | 课程描述
+| max_group_size | integer | 小组人数最大值
+| min_group_size | integer | 小组人数最小值
+
+小组人数最小值必须小于或等于最大值。
+
+e.g.
+```json
+{
+  "description": "foobar",
+  "max_group_size": 4,
+  "min_group_size": 1
+}
+```
+
+---
 ### 删除课程
 
 权限：任课教师
@@ -157,8 +185,6 @@ e.g.
   "student": "http://testserver/api/courses/1/"
 }
 ```
-
-
 
 ---
 ### 设置作业
