@@ -453,6 +453,31 @@ GET courses/:id/students/ungrouped/
 GET students/
 ```
 
+获得某一课程的学生列表：
+
+```
+GET students/?course=id
+```
+
+参数：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| course | id | 课程id。
+
+获得某一课程内有/没有小组的学生
+
+```
+GET students/?course=id&grouped=flag
+```
+
+参数
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| course | id | **Required**. 课程id。
+| grouped | string | `'True'`或者`'False'`。前者表示有组，后者表示无组。
+
 响应：
 
 学生访问：
