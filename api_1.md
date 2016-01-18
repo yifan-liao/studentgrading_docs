@@ -194,7 +194,7 @@ DELETE courses/:id/
 权限：任课教师，上课学生
 
 ```
-GET courses/:id/students/
+GET courses/:id/takes/
 ```
 
 响应：
@@ -204,14 +204,14 @@ GET courses/:id/students/
 ```json
 [
   {
-    "url": "http://testserver/api/courses/1/students/1/",
+    "url": "http://testserver/api/courses/1/takes/1/",
     "id": 1,
     "course": "http://testserver/api/courses/1/",
     "student": "http://testserver/api/students/1/",
     "grade": null
   },
   {
-    "url": "http://testserver/api/courses/1/students/2/",
+    "url": "http://testserver/api/courses/1/takes/2/",
     "id": 2,
     "course": "http://testserver/api/courses/1/",
     "student": "http://testserver/api/students/2/"
@@ -223,14 +223,14 @@ GET courses/:id/students/
 ```json
 [
   {
-    "url": "http://testserver/api/courses/1/students/1/",
+    "url": "http://testserver/api/courses/1/takes/1/",
     "id": 1,
     "course": "http://testserver/api/courses/1/",
     "student": "http://testserver/api/students/1/",
     "grade": null
   },
   {
-    "url": "http://testserver/api/courses/1/students/2/",
+    "url": "http://testserver/api/courses/1/takes/2/",
     "id": 2,
     "course": "http://testserver/api/courses/1/",
     "student": "http://testserver/api/students/2/",
@@ -245,14 +245,14 @@ GET courses/:id/students/
 权限：任课教师，上课学生
 
 ```
-GET courses/:id/students/
+GET courses/:id/takes/
 ```
 
 学生获得自己的选课信息，或者任课教师：
 
 ```json
 {
-  "url": "http://testserver/api/courses/1/students/1/",
+  "url": "http://testserver/api/courses/1/takes/1/",
   "id": 1,
   "course": "http://testserver/api/courses/1/",
   "student": "http://testserver/api/students/1/",
@@ -264,7 +264,7 @@ GET courses/:id/students/
 
 ```json
 {
-  "url": "http://testserver/api/courses/1/students/2/",
+  "url": "http://testserver/api/courses/1/takes/2/",
   "id": 2,
   "course": "http://testserver/api/courses/1/",
   "student": "http://testserver/api/students/2/"
@@ -277,7 +277,7 @@ GET courses/:id/students/
 权限：任课教师
 
 ```json
-PATCH courses/:id/students/:id/
+PATCH courses/:id/takes/:id/
 ```
 
 输入：
@@ -323,7 +323,7 @@ e.g.
 权限：任课教师
 
 ```json
-DELETE courses/:id/students/:id/
+DELETE courses/:id/takes/:id/
 ```
 
 ---
