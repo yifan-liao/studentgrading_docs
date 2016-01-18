@@ -13,7 +13,7 @@ GET myself/
 
 ```json
 {
-  "url": "http://testserver/api/courses/1/",
+  "url": "http://testserver/api/students/1/",
 }
 ```
 
