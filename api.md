@@ -737,8 +737,8 @@ GET groups/
     "course": "http://testserver/api/courses/1/",
     "leader": "http://testserver/api/students/1/",
     "members": [
-      "http://testserver/api/groups/4/",
-      "http://testserver/api/groups/6/"
+      "http://testserver/api/students/4/",
+      "http://testserver/api/students/6/"
     ]
   },
   {
@@ -749,8 +749,8 @@ GET groups/
     "course": "http://testserver/api/courses/1/",
     "leader": "http://testserver/api/students/2/",
     "members": [
-      "http://testserver/api/groups/5/",
-      "http://testserver/api/groups/7/"
+      "http://testserver/api/students/5/",
+      "http://testserver/api/students/7/"
     ]
   }
 ]
@@ -772,8 +772,8 @@ GET groups/:id/
   "course": "http://testserver/api/courses/1/",
   "leader": "http://testserver/api/students/1/",
   "members": [
-    "http://testserver/api/groups/4/",
-    "http://testserver/api/groups/6/"
+    "http://testserver/api/students/4/",
+    "http://testserver/api/students/6/"
   ]
 }
 ```
@@ -862,3 +862,137 @@ DELETE groups/:id/members/
 ```
 GET groups/:id/submissions/
 ```
+
+
+## 课程作业(Assignment)
+
+---
+### 获得课程作业列表
+
+```
+GET assignments/
+```
+
+参数：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| course | id | 课程id。选择某一课程的作业。
+
+响应：
+
+作业信息说明：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| number | string | 作业在课程内的编号，越早布置越小。
+| grade_ratio | number | 作业所占成绩比重，小于1。
+| assigned_time | string | 作业布置时间。
+
+```json
+[
+  {
+    "url": "http://testserver/api/assignments/1/",
+    "id": 1,
+    "course": "http://testserver/api/courses/1/",
+    "title": "Poker Theory and Analytics#0",
+    "description": "",
+    "deadline": "2016-01-26T07:03:14.611922Z",
+    "assigned_time": "2016-01-19T07:03:14.611922Z",
+    "grade_ratio": "0.24",
+    "number": "1"
+  },
+  {
+    "url": "http://testserver/api/assignments/2/",
+    "id": 2,
+    "course": "http://testserver/api/courses/1/",
+    "title": "Poker Theory and Analytics#1",
+    "description": "",
+    "deadline": "2016-01-26T07:03:14.615462Z",
+    "assigned_time": "2016-01-19T07:03:14.615462Z",
+    "grade_ratio": "0.24",
+    "number": "2"
+  }
+]
+```
+
+---
+### 获得某一课程作业
+
+```
+GET assignments/:id/
+```
+
+响应：
+
+```json
+{
+  "url": "http://testserver/api/assignments/1/",
+  "id": 1,
+  "course": "http://testserver/api/courses/1/",
+  "title": "Poker Theory and Analytics#0",
+  "description": "",
+  "deadline": "2016-01-26T07:03:14.611922Z",
+  "assigned_time": "2016-01-19T07:03:14.611922Z",
+  "grade_ratio": "0.24",
+  "number": "1"
+}
+```
+
+---
+### 添加课程作业
+
+```
+POST assignments/
+```
+
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| course | url | **Required**. 课程id。
+| title | string | **Required**. 作业名称。
+| grade_ratio | number | **Required**. 作业成绩占比，小于1。最多两位小数，注意**不要使用浮点**。
+| deadline | string | 截止时间。默认为创建之后7天。
+| description | string | 作业描述。
+
+e.g.
+
+```json
+{
+  "course": "http://testserver/api/courses/1/",
+  "title": "Assignment2",
+  "description": "Blablaba",
+  "deadline": "2016-01-22T10:22:13.769000Z",
+  "grade_ratio": "0.10"
+}
+```
+
+---
+### 修改作业信息
+
+```json
+PUT assignments/:id/
+```
+
+或
+
+```json
+PATCH assignments/:id/
+```
+
+可以修改的域：
+
+- `title`
+- `description`
+- `deadline`
+- `grade_ratio`
+
+---
+### 删除作业
+
+```json
+DELETE assignments/:id/
+```
+
+
