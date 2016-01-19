@@ -332,17 +332,6 @@ e.g.
 DELETE courses/:id/takes/:id/
 ```
 
----
-### 添加作业
-
-权限：任课教师
-
-**还未实现**。
-
-```
-POST courses/:id/assignments/
-```
-
 ___
 ### 查看课程小组列表
 
@@ -437,18 +426,6 @@ e.g.
   "name": "success",
   "leader": "/api/students/1/"
 }
-```
-
----
-### 获得没有小组的学生列表
-
-**还未实现**。
-
-权限：任课教师。上课学生。
-
-
-```
-GET courses/:id/students/ungrouped/
 ```
 
 ## 学生(Student)
