@@ -481,7 +481,7 @@ GET students/
     "sex": "M",
     "s_id": "2012211000",
     "s_class": "http://testserver/api/classes/1/",
-    "courses": "http://testserver/api/students/1/courses/"
+    "takes": "http://testserver/api/students/1/takes/"
   },
   {
     "url": "http://testserver/api/students/2/",
@@ -511,7 +511,7 @@ GET students/
     "sex": "M",
     "s_id": "2012211000",
     "s_class": "http://testserver/api/classes/1/",
-    "courses": "http://testserver/api/students/1/courses/"
+    "takes": "http://testserver/api/students/1/takes/"
   },
   {
     "url": "http://testserver/api/students/2/",
@@ -520,7 +520,7 @@ GET students/
     "sex": "F",
     "s_id": "2012211001",
     "s_class": "http://testserver/api/classes/1/",
-    "courses": "http://testserver/api/students/2/courses/"
+    "takes": "http://testserver/api/students/2/takes/"
   },
   {
     "url": "http://testserver/api/students/3/",
@@ -529,7 +529,7 @@ GET students/
     "sex": "M",
     "s_id": "2012211002",
     "s_class": "http://testserver/api/classes/2/",
-    "courses": "http://testserver/api/students/3/courses/"
+    "takes": "http://testserver/api/students/3/takes/"
   }
 ]
 ```
@@ -554,7 +554,7 @@ GET students/:id/
   "sex": "M",
   "s_id": "2012211000",
   "s_class": "http://testserver/api/classes/1/",
-  "courses": "http://testserver/api/students/1/courses/"
+  "takes": "http://testserver/api/students/1/takes/"
 }
 ```
 
@@ -592,7 +592,7 @@ GET students/:id/
   "sex": "M",
   "s_id": "2012211000",
   "s_class": "http://testserver/api/classes/1/",
-  "courses": "http://testserver/api/students/1/courses/"
+  "takes": "http://testserver/api/students/1/takes/"
 }
 ```
 
@@ -600,21 +600,21 @@ GET students/:id/
 ### 获取学生选课信息
 
 ```
-GET students/:id/courses/
+GET students/:id/takes/
 ```
 
 响应：
 ```json
 [
   {
-    "url": "http://testserver/api/students/1/courses/1/",
+    "url": "http://testserver/api/students/1/takes/1/",
     "id": 1,
     "student": "http://testserver/api/students/1/",
     "course": "http://testserver/api/courses/1/",
     "grade": null
   },
   {
-    "url": "http://testserver/api/students/1/courses/2/",
+    "url": "http://testserver/api/students/1/takes/2/",
     "id": 2,
     "student": "http://testserver/api/students/1/",
     "course": "http://testserver/api/courses/2/",
@@ -631,14 +631,14 @@ GET students/:id/courses/
 权限：学生自己，任课教师，其他上此课程的学生
 
 ```json
-GET students/:id/courses/:id/
+GET students/:id/takes/:id/
 ```
 
 响应：
 
 ```json
 {
-  "url": "http://testserver/api/students/1/courses/1/",
+  "url": "http://testserver/api/students/1/takes/1/",
   "id": 1,
   "student": "http://testserver/api/students/1/",
   "course": "http://testserver/api/courses/1/",
@@ -652,7 +652,7 @@ GET students/:id/courses/:id/
 权限：任课教师
 
 ```json
-PATCH students/:id/courses/:id/
+PATCH students/:id/takes/:id/
 ```
 
 输入：
@@ -675,7 +675,7 @@ e.g.
 权限：任课教师
 
 ```json
-POST students/:id/courses/
+POST students/:id/takes/
 ```
 
 输入：
@@ -698,7 +698,7 @@ e.g.
 权限：任课教师
 
 ```json
-DELETE students/:id/courses/:id/
+DELETE students/:id/takes/:id/
 ```
 
 
