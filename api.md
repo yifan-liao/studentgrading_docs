@@ -17,9 +17,52 @@ GET myself/
 }
 ```
 
+## 用户(User)
+
+---
+### 获得用户信息
+
+权限：自己
+
+```
+GET users/:id/
+```
+
+响应：
+
+```json
+{
+  "url": "http://testserver/api/users/1/",
+  "id": 1,
+  "username": "user#0",
+  "date_joined": "2016-01-19T13:05:46.174702Z"
+}
+```
+
+### 修改用户信息
+
+权限： 自己
+
+```
+PUT users/:id/
+```
+
+或
+
+```
+PATCH users/:id/
+```
+
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| username | string | 新的用户名。用户名不能重复。
+
 
 ## 课程(Course)
 
+---
 ### 获得课程列表
 
 获得所有课程的列表。
@@ -453,7 +496,12 @@ GET students/
   {
     "url": "http://testserver/api/students/1/",
     "id": 1,
-    "user": "http://testserver/api/users/1/",
+    "user": {
+      "url": "http://testserver/api/users/1/",
+      "id": 1,
+      "username": "user#0",
+      "date_joined": "2016-01-19T12:28:34.238957Z"
+    },
     "name": "Joshuah Kertzmann",
     "sex": "M",
     "s_id": "2012211000",
@@ -526,7 +574,12 @@ GET students/:id/
 {
   "url": "http://testserver/api/students/1/",
   "id": 1,
-  "user": "http://testserver/api/users/1/",
+  "user": {
+    "url": "http://testserver/api/users/1/",
+    "id": 1,
+    "username": "user#0",
+    "date_joined": "2016-01-19T12:28:34.238957Z"
+  },
   "name": "Joshuah Kertzmann",
   "sex": "M",
   "s_id": "2012211000",
@@ -678,6 +731,112 @@ e.g.
 DELETE students/:id/takes/:id/
 ```
 
+## 教师(Instructor)
+
+---
+### 获得教师列表
+
+```
+GET instructors/
+```
+
+响应：
+
+教师查看自己，以及别的教师：
+
+```json
+[
+  {
+    "url": "http://testserver/api/instructors/1/",
+    "id": 1,
+    "user": {
+      "url": "http://testserver/api/users/1/",
+      "id": 1,
+      "username": "user#0",
+      "date_joined": "2016-01-19T12:32:53.300351Z"
+    },
+    "name": "Deon Predovic",
+    "sex": "M",
+    "inst_id": "1120000",
+    "teaches": "http://testserver/api/instructors/1/teaches/"
+  },
+  {
+    "url": "http://testserver/api/instructors/2/",
+    "id": 2,
+    "name": "Mrs. Cristine Haley PhD",
+    "sex": "F",
+    "inst_id": "1120001",
+    "teaches": "http://testserver/api/instructors/2/teaches/"
+  },
+]
+```
+
+学生查看任课教师：
+
+```json
+[
+  {
+    "url": "http://testserver/api/instructors/5/",
+    "id": 5,
+    "name": "Dr. Kendall Powlowski",
+    "sex": "F",
+    "teaches": "http://testserver/api/instructors/5/teaches/"
+  }
+]
+```
+
+
+---
+### 获得某一教师的信息
+
+```
+GET instructors/:id/
+```
+
+响应：
+
+教师自己：
+```json
+{
+  "url": "http://testserver/api/instructors/1/",
+  "id": 1,
+  "user": {
+    "url": "http://testserver/api/users/1/",
+    "id": 1,
+    "username": "user#0",
+    "date_joined": "2016-01-19T12:33:58.236226Z"
+  },
+  "name": "Steve Rice",
+  "sex": "M",
+  "inst_id": "1120000",
+  "teaches": "http://testserver/api/instructors/1/teaches/"
+}
+```
+
+教师查看别的教师：
+
+```json
+{
+  "url": "http://testserver/api/instructors/2/",
+  "id": 2,
+  "name": "Mrs. Cristine Haley PhD",
+  "sex": "F",
+  "inst_id": "1120001",
+  "teaches": "http://testserver/api/instructors/2/teaches/"
+}
+```
+
+学生查看任课教师：
+
+```json
+{
+  "url": "http://testserver/api/instructors/5/",
+  "id": 5,
+  "name": "Shirleyann Dicki",
+  "sex": "F",
+  "teaches": "http://testserver/api/instructors/5/teaches/"
+}
+```
 
 ## 小组(Group)
 
