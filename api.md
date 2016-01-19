@@ -25,6 +25,7 @@ GET myself/
 获得所有课程的列表。
 
 权限: 所有人。但是得到的课程信息因人而异。任课教师，上课学生能查看更多的信息。
+
 ```
 GET courses/
 ```
@@ -32,6 +33,7 @@ GET courses/
 学生获得已选课程列表
 
 权限: 学生。
+
 ```
 GET courses/taking/
 ```
@@ -39,6 +41,7 @@ GET courses/taking/
 教师获得任课列表
 
 权限: 教师。
+
 ```
 GET courses/giving/
 ```
@@ -77,6 +80,7 @@ GET courses/giving/
 
 ---
 ### 获得某一课程信息
+
 ```
 GET courses/:id/
 ```
@@ -119,7 +123,9 @@ GET courses/:id/
 
 ---
 ### 新增课程
+
 权限：教师
+
 ```
 POST courses/
 ```
@@ -453,30 +459,13 @@ GET courses/:id/students/ungrouped/
 GET students/
 ```
 
-获得某一课程的学生列表：
-
-```
-GET students/?course=id
-```
-
 参数：
 
 | Name | Type | Description
 |:---- |:---- |:-------
-| course | id | 课程id。
+| course | id | 课程id。选择某一课程内的学生。
+| grouped | string | 取值`'True'`或者`'False'`。前者表示有组，后者表示无组。
 
-获得某一课程内有/没有小组的学生
-
-```
-GET students/?course=id&grouped=flag
-```
-
-参数
-
-| Name | Type | Description
-|:---- |:---- |:-------
-| course | id | **Required**. 课程id。
-| grouped | string | `'True'`或者`'False'`。前者表示有组，后者表示无组。
 
 响应：
 
@@ -717,9 +706,24 @@ DELETE students/:id/courses/:id/
 
 ---
 ### 获得小组列表
+
+获得所有小组的列表。
+
+权限：所有人。学生能查看自己所在小组，教师能查看自己课程的小组。
+
 ```
 GET groups/
 ```
+
+参数：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| course | id | 课程id。选择某一课程的小组。
+| leader | id | 学生id。选择组长为此学生的小组。
+| has_member | id | 学生id。选择此学生是组内普通成员非组长的小组。
+| has_student | id | 学生id。选择此学生是组内普通成员或组长的小组。
+
 
 响应：
 
