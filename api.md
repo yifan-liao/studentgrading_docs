@@ -101,6 +101,9 @@ GET courses/giving/
     "description": "",
     "min_group_size": 0,
     "max_group_size": 5,
+    "total_rollcall_times": 8,
+    "rollcall_penalty": "5",
+    "max_rollcall_penalty": "40",
     "instructors": [
       "http://testserver/api/courses/1/instructors/1/",
       "http://testserver/api/courses/1/instructors/2/"
@@ -141,6 +144,9 @@ GET courses/:id/
   "description": "",
   "min_group_size": 0,
   "max_group_size": 5,
+  "total_rollcall_times": 8,
+  "rollcall_penalty": "5",
+  "max_rollcall_penalty": "40",
   "instructors": [
     "http://testserver/api/courses/1/instructors/1/",
     "http://testserver/api/courses/1/instructors/2/"
@@ -206,7 +212,7 @@ e.g.
 权限：任课教师
 
 ```
-PATCH /courses/:id/
+PATCH courses/:id/
 ```
 
 输入：
@@ -216,6 +222,9 @@ PATCH /courses/:id/
 | description | string | 课程描述
 | max_group_size | integer | 小组人数最大值
 | min_group_size | integer | 小组人数最小值
+| total_rollcall_times | integer | 总点名次数
+| rollcall_penalty | number | 每次点名惩罚分数
+| max_rollcall_penalty | number | 点名最多惩罚分数
 
 小组人数最小值必须小于或等于最大值。
 
@@ -224,7 +233,10 @@ e.g.
 {
   "description": "foobar",
   "max_group_size": 4,
-  "min_group_size": 1
+  "min_group_size": 1,
+  "total_rollcall_times": 8,
+  "rollcall_penalty": "5",
+  "max_rollcall_penalty": "40",
 }
 ```
 
@@ -469,6 +481,144 @@ e.g.
   "name": "success",
   "leader": "/api/students/1/"
 }
+```
+
+---
+### 添加助教
+
+```
+POST courses/:id/assists/
+```
+
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| assistant | url | **Required**. 助教。
+
+e.g.
+
+```json
+{
+  "assistant": "http://testserver/api/assistants/1/"
+}
+```
+
+---
+### 获得学生提交的作业列表
+
+```
+GET courses/:id/submissions/
+```
+
+---
+### 获得学生提交的某一作业
+
+```
+GET courses/:course_id/submissions/:id/
+```
+
+响应：
+
+```json
+{
+  "url": "http://testserver/api/submissions/1/",
+  "id": 1,
+  "assignment": "http://testserver/api/assignments/1/",
+  "group": "http://testserver/api/groups/1/",
+  "content": "foobar",
+  "grade": "80.00",
+  "submitted_dtm": "2016-01-26T07:03:14.611922Z",
+}
+```
+
+---
+### 获得点名名单
+
+```
+GET courses/:id/rollcall_list/
+```
+
+响应：
+
+```json
+[
+  {
+    "url": "http://testserver/api/students/1/",
+    "id": 1,
+    "name": "Joshuah Kertzmann",
+    "sex": "M",
+    "s_id": "2012211000",
+    "s_class": "2012211303",
+    "assignment_grades": [
+      "80.00",
+      "85.00",
+      "90.00"
+    ],
+    "rollcall_grades": [
+      "5",
+      "5",
+    ],
+  },
+  {
+    "url": "http://testserver/api/students/2/",
+    "id": 2,
+    "name": "Ms. Shira O'Kon",
+    "sex": "F",
+    "s_id": "2012211001",
+    "s_class": "2012211303",
+    "assignment_grades": [
+      "70.00",
+      "75.00",
+      "70.00"
+    ],
+    "rollcall_grades": [
+      "0",
+      "5",
+    ],
+  },
+  {
+    "url": "http://testserver/api/students/3/",
+    "id": 3,
+    "name": "Olie Daugherty",
+    "sex": "M",
+    "s_id": "2012211002",
+    "s_class": "2012211304",
+    "assignment_grades": [
+      "60.00",
+      "65.00",
+      "50.00"
+    ],
+    "rollcall_grades": [
+      "0",
+      "0",
+    ],
+  },
+]
+```
+
+---
+### 提交点名结果
+
+```
+POST courses/:id/rollcall_list/
+```
+
+```json
+[
+  {
+    "student": "http://testserver/api/students/1/",
+    "rollcall_grade": "5",
+  },
+  {
+    "student": "http://testserver/api/students/2/",
+    "rollcall_grade": "0",
+  },
+  {
+    "student": "http://testserver/api/students/3/",
+    "rollcall_grade": "5",
+  },
+]
 ```
 
 ## 学生(Student)
@@ -1110,4 +1260,23 @@ PATCH assignments/:id/
 DELETE assignments/:id/
 ```
 
+
+## 助教(Assistant)
+
+---
+### 获得助教列表
+
+```
+GET assistants/
+```
+
+
+---
+### 获得某一助教
+
+```
+GET assistants/:id/
+```
+
+---
 
