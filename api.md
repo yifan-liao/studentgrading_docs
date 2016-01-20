@@ -349,7 +349,7 @@ e.g.
 权限: 任课教师
 
 ```
-POST courses/:id/students/
+POST courses/:id/takes/
 ```
 
 输入：
@@ -677,29 +677,6 @@ GET students/:id/takes/:id/
 ```
 
 ---
-### 修改学生课程成绩
-
-权限：任课教师
-
-```json
-PATCH students/:id/takes/:id/
-```
-
-输入：
-
-| Name | Type | Description
-|:---- |:---- |:-------
-| grade | decimal string | 课程成绩，0-100之间，最多两位小数
-
-e.g.
-
-```json
-{
-  "grade": '80.5'
-}
-```
-
----
 ### 学生选课
 
 权限：任课教师
@@ -916,6 +893,7 @@ GET groups/:id/
 
 ---
 ### 修改小组信息
+
 修改小组名称。
 
 权限：任课教师，组长。
@@ -939,6 +917,7 @@ e.g.
 
 ---
 ### 更换组长
+
 将一个组内成员提升为组长，组长降为组内成员。
 
 权限：任课教师，组长。
@@ -987,7 +966,7 @@ POST groups/:id/members/
 权限：任课教师，组长。
 
 ```
-DELETE groups/:id/members/
+DELETE groups/:group_id/members/:id/
 ```
 
 ---
@@ -1086,7 +1065,7 @@ POST assignments/
 
 | Name | Type | Description
 |:---- |:---- |:-------
-| course | url | **Required**. 课程id。
+| course | url | **Required**. 课程。
 | title | string | **Required**. 作业名称。
 | grade_ratio | number | **Required**. 作业成绩占比，小于1。最多两位小数，注意**不要使用浮点**。
 | deadline | string | 截止时间。默认为创建之后7天。
