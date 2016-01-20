@@ -1275,6 +1275,20 @@ POST assignments/:id/submissions/
 |:---- |:---- |:-------
 | content | string | 作业内容
 
+## 提交的作业（Submissions)
+
+---
+### 获得作业列表
+
+```
+GET submissions/
+```
+
+参数：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| group | id | 小组的id。得到某个小组提交的所有作业。
 
 ## 助教(Assistant)
 
