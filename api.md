@@ -1278,5 +1278,22 @@ GET assistants/
 GET assistants/:id/
 ```
 
+```json
+{
+  "url": "http://testserver/api/assistants/1/",
+  "id": 1,
+  "user": {
+    "url": "http://testserver/api/users/1/",
+    "id": 1,
+    "username": "user#0",
+    "date_joined": "2016-01-19T12:28:34.238957Z"
+  },
+  "name": "Joshuah Kertzmann",
+  "sex": "M",
+  "a_id": "1500001",
+  "assists": "http://testserver/api/assistants/1/assists/"
+}
+```
+
 ---
 
