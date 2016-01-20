@@ -1236,13 +1236,13 @@ e.g.
 ---
 ### 修改作业信息
 
-```json
+```
 PUT assignments/:id/
 ```
 
 或
 
-```json
+```
 PATCH assignments/:id/
 ```
 
@@ -1256,9 +1256,24 @@ PATCH assignments/:id/
 ---
 ### 删除作业
 
-```json
+```
 DELETE assignments/:id/
 ```
+
+---
+### 提交作业
+
+权限：学生。
+
+```
+POST assignments/:id/submissions/
+```
+
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| content | string | 作业内容
 
 
 ## 助教(Assistant)
