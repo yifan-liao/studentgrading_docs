@@ -621,6 +621,75 @@ POST courses/:id/rollcall_list/
 ]
 ```
 
+---
+### 获得成绩单
+
+```
+GET courses/:id/grade_list/
+```
+
+响应：
+
+```json
+[
+  {
+    "url": "http://testserver/api/students/1/",
+    "id": 1,
+    "name": "Joshuah Kertzmann",
+    "sex": "M",
+    "s_id": "2012211000",
+    "s_class": "2012211303",
+    "grade": "80",
+    "assignment_grades": [
+      "80.00",
+      "85.00",
+      "90.00"
+    ],
+    "rollcall_grades": [
+      "5",
+      "5",
+    ],
+  },
+  {
+    "url": "http://testserver/api/students/2/",
+    "id": 2,
+    "name": "Ms. Shira O'Kon",
+    "sex": "F",
+    "s_id": "2012211001",
+    "s_class": "2012211303",
+    "grade": "70",
+    "assignment_grades": [
+      "70.00",
+      "75.00",
+      "70.00"
+    ],
+    "rollcall_grades": [
+      "0",
+      "5",
+    ],
+  },
+  {
+    "url": "http://testserver/api/students/3/",
+    "id": 3,
+    "name": "Olie Daugherty",
+    "sex": "M",
+    "s_id": "2012211002",
+    "s_class": "2012211304",
+    "grade": "60",
+    "assignment_grades": [
+      "60.00",
+      "65.00",
+      "50.00"
+    ],
+    "rollcall_grades": [
+      "0",
+      "0",
+    ],
+  },
+]
+```
+
+
 ## 学生(Student)
 
 ### 获得学生列表
@@ -984,6 +1053,7 @@ GET groups/
 |:---- |:---- |:-------
 | course | id | 课程id。选择某一课程的小组。
 | leader | id | 学生id。选择组长为此学生的小组。
+| assistant | id 助教id。选择助教所负责的小组。
 | has_member | id | 学生id。选择此学生是组内普通成员非组长的小组。
 | has_student | id | 学生id。选择此学生是组内普通成员或组长的小组。
 
@@ -1289,6 +1359,24 @@ GET submissions/
 | Name | Type | Description
 |:---- |:---- |:-------
 | group | id | 小组的id。得到某个小组提交的所有作业。
+| assistant | id | 助教id。得到助教所负责的作业。
+| student | id | 学生id。得到某个学生提交的所有作业。
+| course | id | 课程id。得到某个课程下所有提交的作业。同小组。
+| checked | string | `True` 或者 `False`。得到批改或者未批改的作业。
+
+---
+### 批改作业
+
+```
+PUT submissions/:id/
+```
+
+输入：
+
+| Name | Type | Description
+|:---- |:---- |:-------
+| grade | number | 作业成绩。
+| remark | string | 批改评语。
 
 ## 助教(Assistant)
 
