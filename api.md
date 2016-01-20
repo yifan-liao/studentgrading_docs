@@ -528,6 +528,7 @@ GET courses/:course_id/submissions/:id/
   "group": "http://testserver/api/groups/1/",
   "content": "foobar",
   "grade": "80.00",
+  "remark": "Well done!",
   "submitted_dtm": "2016-01-26T07:03:14.611922Z",
 }
 ```
@@ -1363,6 +1364,21 @@ GET submissions/
 | student | id | 学生id。得到某个学生提交的所有作业。
 | course | id | 课程id。得到某个课程下所有提交的作业。同小组。
 | checked | string | `True` 或者 `False`。得到批改或者未批改的作业。
+
+响应：
+
+```json
+{
+  "url": "http://testserver/api/submissions/1/",
+  "id": 1,
+  "assignment": "http://testserver/api/assignments/1/",
+  "group": "http://testserver/api/groups/1/",
+  "content": "foobar",
+  "grade": "80.00",
+  "remark": "Well done!",
+  "submitted_dtm": "2016-01-26T07:03:14.611922Z",
+}
+```
 
 ---
 ### 批改作业
